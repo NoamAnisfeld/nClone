@@ -1,17 +1,17 @@
 import express from "express";
+import bodyParser from "body-parser";
+import { PORT } from "./globals.js";
+import { router } from "./routes.js";
 
-const app = express();
+init();
 
-app.use((req, res, next) => {
-    console.log(req.url);
-    next();
-})
+function init() {
+    const app = express();
 
-app.get('/', (req, res) => {
-    res.send('response');
-})
+    app.use(bodyParser.json());
 
-const PORT = 3000;
-app.listen(PORT, () => {
-    console.log(`Server is running on Port ${PORT}`);
-});
+    app.listen(PORT, () => {
+        console.log(`Server is running on Port ${PORT}`);
+        router(app);
+    });
+}
