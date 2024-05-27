@@ -1,7 +1,9 @@
+import NLinksList from "./components/NLinksList";
+
 function App() {
 
   return (
-    <h1>nClone</h1>
+    <NLinksList />
   )
 }
 
