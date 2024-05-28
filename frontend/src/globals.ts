@@ -1,0 +1,1 @@
+export const apiEndpoint = String(import.meta.env.VITE_API_ENDPOINT || `${location.origin}/api/`);
