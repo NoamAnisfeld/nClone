@@ -1,5 +1,7 @@
+import { useState } from 'react';
 import { RouterProvider, createRouter } from '@tanstack/react-router';
 import { routeTree } from './routeTree.gen';
+import { UserInfoContext } from './providers/UserInfo';
 
 const router = createRouter({ routeTree });
 declare module '@tanstack/react-router' {
@@ -9,8 +11,13 @@ declare module '@tanstack/react-router' {
 }
 
 function App() {
+
+  const [username, setUsername] = useState('');
+
   return (
-    <RouterProvider router={router} />
+    <UserInfoContext.Provider value={{ name: username, setName: setUsername }}>
+      <RouterProvider router={router} />
+    </UserInfoContext.Provider>
   )
 }
 
