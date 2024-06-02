@@ -19,3 +19,12 @@ export async function postJson(url: string, data: unknown) {
         body: JSON.stringify(data),
     })
 }
+
+export function isValidUrl(url: string): boolean {
+    try {
+        new URL(url);
+        return true;
+    } catch(e) {
+        return false;
+    }
+}

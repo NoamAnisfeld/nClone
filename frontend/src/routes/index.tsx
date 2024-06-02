@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
 import NLinksList from "../components/NLinksList";
 import { useContext, useEffect } from "react";
 import { UserInfoContext } from "../providers/UserInfo";
@@ -19,5 +19,8 @@ function Index() {
         }
     });
 
-    return <NLinksList />
+    return (<>
+        <Link to="/addnlink">Add new nLink</Link>
+        <NLinksList />
+    </>)
 }
