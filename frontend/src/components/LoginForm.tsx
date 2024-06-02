@@ -14,7 +14,9 @@ export default function LoginForm({
 
     const [inputUsername, setInputUsername] = useState('');
 
-    const handleSubmit: FormEventHandler = () => {
+    const handleSubmit: FormEventHandler = (e) => {
+        e.preventDefault();
+
         if (inputUsername) {
             onSubmit({
                 username: inputUsername,
