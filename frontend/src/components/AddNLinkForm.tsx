@@ -1,5 +1,15 @@
-import { useState } from "react";
-import { isValidUrl } from "../utils";
+import { Button } from "@/components/ui/button"
+import {
+    Card,
+    CardContent,
+    CardTitle,
+    CardFooter,
+    CardHeader,
+} from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { useState, type FormEventHandler } from "react"
+import { isValidUrl } from "../utils"
 
 export interface NLinkDetails {
     title: string,
@@ -17,7 +27,9 @@ export default function AddNLinkForm({
     const [inputTitle, setInputTitle] = useState('');
     const [inputImageUrl, setInputImageUrl] = useState('');
 
-    function handleSubmit() {
+    const handleSubmit: FormEventHandler = (e) => {
+        e.preventDefault();
+
         if (!inputTitle) {
             return;
         }
@@ -29,28 +41,44 @@ export default function AddNLinkForm({
     }
 
     return (
-        <form onSubmit={e => (e.preventDefault(), handleSubmit())}>
-            <label>
-                Title
-                <input value={inputTitle} onChange={({ target }) => setInputTitle(target.value)} />
-            </label>
-            <br />
-            <label>
-                Image URL
-                <input type="url" value={inputImageUrl} onChange={({ target }) => setInputImageUrl(target.value)} />
-            </label>
-            <div>
-                <button disabled={!inputTitle}>Add NLink</button>
-            </div>
-            {inputImageUrl && isValidUrl(inputImageUrl)
-                ?
-                <div>
-                    <h2>Image Preview</h2>
-                    <img src={inputImageUrl} height={100}/>
-                </div>
-                :
-                undefined
-            }
-        </form >
+        <form onSubmit={handleSubmit}>
+            <Card className="w-full max-w-sm mx-auto">
+                <CardHeader>
+                    <CardTitle>
+                        Create a new nLink
+                    </CardTitle>
+                </CardHeader>
+                <CardContent className="grid gap-4">
+                    <Label htmlFor="title">Title</Label>
+                    <Input
+                        id="title"
+                        required
+                        autoFocus
+                        value={inputTitle}
+                        onChange={e => setInputTitle(e.target.value)}
+                    />
+
+                    <Label htmlFor="image-url">Image URL</Label>
+                    <Input
+                        id="image-url"
+                        type="url"
+                        value={inputImageUrl}
+                        onChange={e => setInputImageUrl(e.target.value)}
+                    />
+                </CardContent>
+                <CardFooter>
+                    <Button disabled={!inputTitle} className="w-full">Save nLink</Button>
+                </CardFooter>
+                {inputImageUrl && isValidUrl(inputImageUrl)
+                    ?
+                    <div>
+                        <h2>Image Preview</h2>
+                        <img src={inputImageUrl} height={100} />
+                    </div>
+                    :
+                    undefined
+                }
+            </Card>
+        </form>
     )
 }

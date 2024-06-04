@@ -1,5 +1,5 @@
 import { createFileRoute, Navigate } from '@tanstack/react-router';
-import { useContext } from 'react';
+import { useContext, type ReactNode } from 'react';
 import { UserInfoContext } from '../providers/UserInfo';
 import AddNLinkForm, { NLinkDetails } from '../components/AddNLinkForm';
 import { useMutation } from '@tanstack/react-query';
@@ -30,19 +30,19 @@ function AddNLinkPage() {
         return <Navigate to="/" />
     }
 
+    const message: ReactNode =
+        mutation.error
+        ? <ErrorMessage message={mutation.error.message} />
+        :
+        mutation.isPending
+            ?
+            <Processing />
+            :
+            undefined
+        ;
+
     return (<>
-        <h2>Create a new nLink</h2>
         <AddNLinkForm onSubmit={handleSubmit} />
-        {
-            mutation.error
-                ?
-                <ErrorMessage message={mutation.error.message} />
-                :
-                mutation.isPending
-                    ?
-                    <Processing />
-                    :
-                    undefined
-        }
+        {message}
     </>)
 }
