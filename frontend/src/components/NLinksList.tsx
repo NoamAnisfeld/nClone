@@ -25,7 +25,11 @@ export default function NLinksList() {
 
     return <ul role="list" className="flex flex-col gap-2 my-4">{
         nLinks.map(nLink => <li key={nLink.id}>
-            <NLinkItem title={nLink.title} author={nLink.author} />
+            <NLinkItem
+                title={nLink.title}
+                author={nLink.author}
+                votesCount={nLink.votesCount}
+            />
         </li>)
     }</ul>
 }
