@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { RouterProvider, createRouter } from '@tanstack/react-router';
 import { routeTree } from './routeTree.gen';
 import { UserInfoContext } from './providers/UserInfo';
+import './app.css';
 
 const router = createRouter({ routeTree });
 declare module '@tanstack/react-router' {

@@ -1,4 +1,4 @@
-import type { DB, Link, LinkCreationInfo } from "./schemas.js";
+import type { DB, EntityWithId, Link, LinkCreationInfo } from "./schemas.js";
 import { dbSchema } from "./schemas.js";
 import { generateId } from "./utils.js";
 import fs from 'node:fs';
@@ -44,4 +44,30 @@ export async function addLink(creationInfo: LinkCreationInfo) {
 
 export async function getLinks() {
     return _db.links;
+}
+
+export async function castUpvote({ id }: EntityWithId) {
+    const index = _db.links.findIndex(item => item.id === id);
+    
+    if (index === -1) {
+        throw new Error('Id not found');
+    }
+
+    const newVotesCount = _db.links[index].votesCount + 1;
+    _db.links[index].votesCount = newVotesCount;
+    _persistDb();
+    return newVotesCount;
+}
+
+export async function castDownvote({ id }: EntityWithId) {
+    const index = _db.links.findIndex(item => item.id === id);
+    
+    if (index === -1) {
+        throw new Error('Id not found');
+    }
+
+    const newVotesCount = _db.links[index].votesCount - 1;
+    _db.links[index].votesCount = newVotesCount;
+    _persistDb();
+    return newVotesCount;
 }
