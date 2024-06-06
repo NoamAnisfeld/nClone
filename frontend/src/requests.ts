@@ -11,3 +11,13 @@ export async function addNLink(info: NLinkCreationInfo) {
     const response = await postJson(ApiUrl('link'), info);
     return response;
 }
+
+export async function upvote(id: string) {
+    const response = await postJson(ApiUrl('upvote'), { id });
+    return response;
+}
+
+export async function downvote(id: string) {
+    const response = await postJson(ApiUrl('downvote'), { id });
+    return response;
+}
