@@ -11,5 +11,7 @@ export function apiPath(route: string): string {
 export const HttpCodes = {
     ok: 200,
     created: 201,
+    noContent: 204,
+    updated: 204, // a common usecase for 204 No Content
 } as const;
 

@@ -1,5 +1,10 @@
 import { z } from "zod";
 
+export const entityWithIdSchema = z.object({
+    id: z.string(),
+})
+export type EntityWithId = z.infer<typeof entityWithIdSchema>
+
 export const linkCreationInfoSchema = z.object({
     title: z.string(),
     author: z.string(),
