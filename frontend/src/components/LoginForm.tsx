@@ -34,14 +34,14 @@ export default function LoginForm({
     }
 
     return (
-        <Card className="w-full max-w-sm mx-auto">
-            <CardHeader>
-                <CardDescription>
-                    Please insert your name to enter the system.
-                </CardDescription>
-            </CardHeader>
-            <CardContent className="grid gap-4">
-                <form className="grid gap-2" onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
+            <Card className="w-full max-w-sm mx-auto">
+                <CardHeader>
+                    <CardDescription>
+                        Please insert your name to enter the system.
+                    </CardDescription>
+                </CardHeader>
+                <CardContent className="grid gap-2">
                     <Label htmlFor="name">Name</Label>
                     <Input
                         id="name"
@@ -50,11 +50,11 @@ export default function LoginForm({
                         value={inputUsername}
                         onChange={e => setInputUsername(e.target.value)}
                     />
-                </form>
-            </CardContent>
-            <CardFooter>
-                <Button className="w-full">Enter</Button>
-            </CardFooter>
-        </Card>
+                </CardContent>
+                <CardFooter>
+                    <Button className="w-full">Enter</Button>
+                </CardFooter>
+            </Card>
+        </form>
     )
 }
