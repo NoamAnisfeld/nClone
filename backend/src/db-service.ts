@@ -34,6 +34,7 @@ export async function addLink(creationInfo: LinkCreationInfo) {
         id: generateId(),
         title: creationInfo.title,
         author: creationInfo.author,
+        createdAt: Date.now(),
         commentIds: [],
         votesCount: 0,
     };

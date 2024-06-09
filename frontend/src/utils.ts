@@ -28,3 +28,17 @@ export function isValidUrl(url: string): boolean {
         return false;
     }
 }
+
+export function dateParts(date: Date) {
+    return {
+        year: date.getFullYear(),
+        monthNumber: date.getMonth() + 1,
+        monthName: ['January', 'February', 'March', 'April', 'May', 'June', 'Julu', 'August', 'September', 'October', 'November', 'December'][date.getMonth()],
+        monthShortName: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][date.getMonth()],
+        monthDay: date.getDate(),
+        hour: date.getHours(),
+        minutes: date.getMinutes(),
+        seconds: date.getSeconds(),
+        milliseconds: date.getMilliseconds(),
+    };
+}

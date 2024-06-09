@@ -42,6 +42,7 @@ export default function NLinksList() {
             <NLinkItem
                 title={nLink.title}
                 author={nLink.author}
+                createdAt={nLink.createdAt}
                 votesCount={nLink.votesCount}
                 onUpvote={() => upvoteMutation.mutate(nLink.id)}
                 onDownvote={() => downvoteMutation.mutate(nLink.id)}
