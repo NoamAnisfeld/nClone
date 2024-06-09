@@ -1,3 +1,4 @@
+import { dateParts } from "@/utils";
 import {
     CardWithSections,
     CardMain,
@@ -11,6 +12,7 @@ import { UpvoteButton, DownvoteButton } from "./VoteButtons"
 export interface NLinkItemProps {
     title: string,
     author: string,
+    createdAt: number,
     votesCount: number,
     onUpvote?: () => void,
     onDownvote?: () => void,
@@ -19,10 +21,19 @@ export interface NLinkItemProps {
 export default function NLinkItem({
     title,
     author,
+    createdAt,
     votesCount,
-    onUpvote = () => {},
-    onDownvote = () => {},
+    onUpvote = () => { },
+    onDownvote = () => { },
 }: NLinkItemProps) {
+
+    const {
+        year,
+        monthShortName,
+        monthDay,
+        hour,
+        minutes,
+    } = dateParts(new Date(createdAt));
 
     return (
         <CardWithSections>
@@ -38,7 +49,12 @@ export default function NLinkItem({
                     <CardTitle>{title}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                    {author}
+                    <p>
+                        {author}
+                    </p>
+                    <p>
+                        {`Submitted on ${monthShortName} ${monthDay}, ${year} ${String(hour).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`}
+                    </p>
                 </CardContent>
             </CardMain>
         </CardWithSections>
