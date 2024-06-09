@@ -15,6 +15,7 @@ export const linkSchema = z.object({
     id: z.string(),
     title: z.string(),
     author: z.string(),
+    createdAt: z.number(),
     commentIds: z.array(z.string()),
     votesCount: z.number(),
 });
