@@ -1,6 +1,5 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import NLinksList from "../components/NLinksList";
-import { Button } from "@/components/ui/button";
 
 
 export const Route = createFileRoute('/')({
@@ -10,9 +9,6 @@ export const Route = createFileRoute('/')({
 function Index() {
 
     return (<>
-        <Button asChild>
-            <Link to="/addnlink">Add new nLink</Link>
-        </Button>
         <NLinksList />
     </>)
 }
